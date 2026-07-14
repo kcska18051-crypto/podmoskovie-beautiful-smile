@@ -95,10 +95,21 @@ test('uses the supplied responsive team compositions', async () => {
 test('frames the prototype with responsive snapshots of the live site shell', async () => {
   const html = await read('../index.html');
 
-  assert.match(html, /site-shell\/header-desktop\.png/);
-  assert.match(html, /site-shell\/header-mobile\.png/);
+  assert.match(html, /site-shell\/header-desktop\.svg/);
+  assert.match(html, /site-shell\/header-mobile\.svg/);
   assert.match(html, /site-shell\/footer-desktop-viewport\.png/);
   assert.match(html, /site-shell\/footer-mobile\.png/);
   assert.match(html, /<picture class="site-shell-picture site-shell-picture--header">/);
   assert.match(html, /<picture class="site-shell-picture site-shell-picture--footer">/);
+});
+
+test('uses the approved vector header for desktop and mobile', async () => {
+  const html = await read('../index.html');
+  const base = await read('../assets/css/base.css');
+
+  assert.match(html, /site-shell\/header-desktop\.svg/);
+  assert.match(html, /site-shell\/header-mobile\.svg/);
+  assert.doesNotMatch(html, /site-shell\/header-(?:desktop|mobile)\.png/);
+  assert.match(base, /aspect-ratio:\s*1920\s*\/\s*107/);
+  assert.match(base, /aspect-ratio:\s*390\s*\/\s*115/);
 });

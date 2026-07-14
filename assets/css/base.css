@@ -21,7 +21,7 @@ p { margin: 0; }
 .button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--turquoise-dark); outline-offset: 3px; }
 .site-shell { position:relative; z-index:20; width:100%; overflow:hidden; background:var(--surface); }
 .site-shell-picture,.site-shell-picture img { display:block; width:100%; }
-.site-shell-picture--header img { aspect-ratio:1440 / 168; object-fit:cover; object-position:center top; }
+.site-shell-picture--header img { aspect-ratio:1920 / 107; object-fit:cover; object-position:center top; }
 .site-shell-picture--footer img { object-fit:cover; object-position:center top; }
 .site-footer { padding:0; background:var(--surface-soft); }
 .visually-hidden { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
