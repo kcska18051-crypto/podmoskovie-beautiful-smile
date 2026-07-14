@@ -1,0 +1,23 @@
+:root {
+  --orange: #F08C07;
+  --blue-050: #E4F7FA;
+  --blue-200: #94D6DC;
+  --turquoise: #1FBBC7;
+  --turquoise-dark: #0096AA;
+  --white: #FFFFFF;
+  --surface: #FEFEFE;
+  --surface-soft: #F7F7F7;
+  --surface-card: #F5F5F5;
+  --text: #656565;
+  --text-strong: #585858;
+  --font-heading: 'Ubuntu', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+  --container: 1440px;
+  --radius-sm: 16px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --shadow-soft: 0 18px 50px rgb(0 150 170 / 10%);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --duration-fast: 180ms;
+  --duration-normal: 320ms;
+}
