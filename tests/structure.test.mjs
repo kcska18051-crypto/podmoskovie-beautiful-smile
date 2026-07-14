@@ -60,7 +60,7 @@ test('implements the second-iteration desktop and mobile structure', async () =>
   const content = await read('../assets/js/content.mjs');
   const heroStart = html.indexOf('id="hero"');
   const heroEnd = html.indexOf('</section>', heroStart);
-  const factsStart = html.indexOf('class="hero-facts"');
+  const factsStart = html.indexOf('class="hero-facts');
 
   assert.match(html, /Красивая улыбка начинается с точного плана/);
   assert.match(html, /hero-people\.png/);
@@ -94,11 +94,13 @@ test('uses the supplied responsive team compositions', async () => {
 
 test('frames the prototype with responsive snapshots of the live site shell', async () => {
   const html = await read('../index.html');
+  const baseCss = await read('../assets/css/base.css');
 
   assert.match(html, /site-shell\/header-desktop\.svg/);
   assert.match(html, /site-shell\/header-mobile\.svg/);
   assert.match(html, /site-shell\/footer-desktop-viewport\.png/);
-  assert.match(html, /site-shell\/footer-mobile\.png/);
+  assert.match(html, /site-shell\/footer-mobile\.svg/);
+  assert.match(baseCss, /site-shell-picture--footer img\s*\{[^}]*aspect-ratio:\s*390\s*\/\s*1778/s);
   assert.match(html, /<picture class="site-shell-picture site-shell-picture--header">/);
   assert.match(html, /<picture class="site-shell-picture site-shell-picture--footer">/);
 });
@@ -112,4 +114,44 @@ test('uses the approved vector header for desktop and mobile', async () => {
   assert.doesNotMatch(html, /site-shell\/header-(?:desktop|mobile)\.png/);
   assert.match(base, /aspect-ratio:\s*1920\s*\/\s*107/);
   assert.match(base, /aspect-ratio:\s*390\s*\/\s*115/);
+});
+
+test('uses one lower hero glow and an accent clinic-facts band', async () => {
+  const html = await read('../index.html');
+  const css = await read('../assets/css/components.css');
+
+  assert.equal((html.match(/class="hero__glow/g) ?? []).length, 1);
+  assert.match(html, /class="hero-facts hero-facts--accent"/);
+  assert.match(css, /\.hero__visual img[^}]+width:\s*13[0-9]%/s);
+  assert.match(css, /\.hero-facts--accent/);
+});
+
+test('integrates situation photography and reveals paths only on interaction', async () => {
+  const html = await read('../index.html');
+  const content = await read('../assets/js/content.mjs');
+  const css = await read('../assets/css/components.css');
+
+  assert.match(content, /situations\/color-v2\.png/);
+  assert.doesNotMatch(html, /path-card--accent/);
+  assert.match(css, /\.path-card:is\(:hover,:focus-within\)/);
+  assert.match(css, /\.care-cta__inner[^}]+min-height:\s*5[3-9]0px/s);
+  assert.match(css, /\.situation-card__photo img[^}]+object-position/s);
+});
+
+test('aligns case content and animates expert proof cards', async () => {
+  const css = await read('../assets/css/components.css');
+  assert.match(css, /\.case-card\s*\{[^}]*display:\s*flex[^}]*flex-direction:\s*column/s);
+  assert.match(css, /\.case-card__body\s*\{[^}]*display:\s*grid[^}]*flex:\s*1/s);
+  assert.match(css, /\.case-card__body h3\s*\{[^}]*min-height:/s);
+  assert.match(css, /\.case-card__body a\s*\{[^}]*margin-top:\s*auto/s);
+  assert.match(css, /\.cases__note strong\s*\{[^}]*background:\s*var\(--orange\)/s);
+  assert.match(css, /\.expert__proofs li:is\(:hover,:focus-within\)/s);
+});
+
+test('uses a full-bleed team artwork and a clean steps diagonal', async () => {
+  const html = await read('../index.html');
+  const css = await read('../assets/css/components.css');
+  assert.match(html, /section-heading[\s\S]*?<\/div><\/div><div class="team-stage team-stage--full-bleed">/);
+  assert.match(css, /\.team-stage--full-bleed\s*\{[^}]*border-radius:\s*0/s);
+  assert.match(css, /\.steps-route__panels article::after\s*\{[^}]*clip-path:/s);
 });

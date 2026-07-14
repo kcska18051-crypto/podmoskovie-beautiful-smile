@@ -36,6 +36,6 @@ p { margin: 0; }
   .container { width: min(calc(100% - 32px), var(--container)); }
   .section-heading { margin-bottom: 32px; }
   .site-shell-picture--header img { aspect-ratio:390 / 115; object-position:center top; }
-  .site-shell-picture--footer img { aspect-ratio:390 / 2300; object-position:center top; }
+  .site-shell-picture--footer img { aspect-ratio:390 / 1778; object-position:center top; }
   .section { padding: 60px 0; }
 }
