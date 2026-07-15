@@ -131,7 +131,7 @@ test('integrates situation photography and reveals paths only on interaction', a
   const content = await read('../assets/js/content.mjs');
   const css = await read('../assets/css/components.css');
 
-  assert.match(content, /situations\/color-v2\.png/);
+  assert.match(content, /situations\/unified-01\.png/);
   assert.doesNotMatch(html, /path-card--accent/);
   assert.match(css, /\.path-card:is\(:hover,:focus-within\)/);
   assert.match(css, /\.care-cta__inner[^}]+min-height:\s*5[3-9]0px/s);
@@ -148,10 +148,29 @@ test('aligns case content and animates expert proof cards', async () => {
   assert.match(css, /\.expert__proofs li:is\(:hover,:focus-within\)/s);
 });
 
-test('uses a full-bleed team artwork and a clean steps diagonal', async () => {
+test('uses a full-bleed team artwork and a clean desktop steps visual', async () => {
   const html = await read('../index.html');
   const css = await read('../assets/css/components.css');
   assert.match(html, /section-heading[\s\S]*?<\/div><\/div><div class="team-stage team-stage--full-bleed">/);
   assert.match(css, /\.team-stage--full-bleed\s*\{[^}]*border-radius:\s*0/s);
-  assert.match(css, /\.steps-route__panels article::after\s*\{[^}]*clip-path:/s);
+  assert.doesNotMatch(css, /\.steps-route__panels article::after\s*\{[^}]*clip-path:/s);
+});
+
+test('implements the fourth desktop refinement contract', async () => {
+  const html = await read('../index.html');
+  const css = await read('../assets/css/components.css');
+  const content = await read('../assets/js/content.mjs');
+
+  assert.ok((html.match(/class="desktop-break"/g) ?? []).length >= 4);
+  assert.match(css, /\.desktop-break\s*\{[^}]*display:/s);
+  assert.match(css, /\.hero-facts--accent\s*\{[^}]*background:\s*#1FBBC7/s);
+  assert.doesNotMatch(css, /\.hero-facts--accent::after/);
+  assert.match(css, /\.situation-card\s*\{[^}]*background:\s*#F5F5F5/s);
+  assert.doesNotMatch(css, /\.situation-card__photo::before/);
+  assert.match(css, /\.path-card\s*\{[^}]*transition:[^}]*480ms/s);
+  assert.equal((html.match(/class="steps-route__visual"/g) ?? []).length, 4);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.steps-route__visual\s*\{[^}]*display:\s*none/s);
+  for (let index = 1; index <= 6; index += 1) {
+    assert.match(content, new RegExp(`situations/unified-0${index}\\.png`));
+  }
 });
