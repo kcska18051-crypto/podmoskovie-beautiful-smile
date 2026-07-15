@@ -221,11 +221,21 @@ test('implements the approved mobile refinement contract', async () => {
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.situation-card__front\s*\{[^}]*44%/s);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.situation-card__title\s*\{[^}]*font-size:\s*19px/s);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.care-cta__doctor\s*\{[^}]*min-height:\s*420px[^}]*margin-top:\s*36px/s);
-  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.steps-route__visual\s*\{[^}]*display:\s*block[^}]*height:\s*180px/s);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.steps-route__visual\s*\{[^}]*display:\s*block[^}]*height:\s*210px/s);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.steps-route__visual\s*\{[^}]*border-bottom:\s*4px solid #94D6DC/s);
   for (let index = 1; index <= 6; index += 1) {
     assert.match(content, new RegExp(`situations/unified-0${index}\\.png\\?v=mobile2`));
   }
+});
+
+test('keeps all mobile step panels equally compact with larger imagery', async () => {
+  const css = await read('../assets/css/components.css');
+
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.steps-route__panels\s*\{[^}]*min-height:\s*500px/s);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.steps-route__panels article\s*\{[^}]*min-height:\s*500px[^}]*padding:\s*246px 20px 20px/s);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.steps-route__visual\s*\{[^}]*height:\s*210px/s);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.steps-route__panels article::before[^}]*top:\s*219px/s);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.steps-route__panels article:last-child h3\s*\{[^}]*font-size:\s*24px/s);
 });
 
 test('blends mobile situation photography into the card background', async () => {
