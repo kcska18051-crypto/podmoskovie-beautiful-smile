@@ -76,7 +76,7 @@
   .situation-card__front { grid-template-columns:minmax(0,56%) 44%; }
   .situation-card__title { padding:22px 12px 22px 20px; font-size:19px; line-height:1.12; overflow-wrap:normal; }
   .situation-card__back { padding:24px; }
-  .situation-card__photo::before { display:none; }
+  .situation-card__photo::before { display:block; width:28%; background:linear-gradient(90deg,#F5F5F5 0%,rgb(245 245 245 / 86%) 30%,transparent 100%); }
   .situation-card__photo,.situation-card__photo img { min-height:184px; height:184px; }
   .situation-card__photo img { object-position:right bottom; }
   .care-cta__inner { grid-template-columns: 1fr; gap: 28px; }

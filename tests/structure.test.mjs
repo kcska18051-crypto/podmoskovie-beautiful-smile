@@ -206,7 +206,7 @@ test('implements the visual seams refinement contract', async () => {
   assert.match(css, /\.hero-facts span\s*\{/s);
   assert.doesNotMatch(css, /\.hero-facts li::before\s*\{/s);
   assert.match(css, /\.situation-card__photo::before\s*\{[^}]*linear-gradient\(90deg,#F5F5F5/s);
-  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.situation-card__photo::before\s*\{[^}]*display:\s*none/s);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.situation-card__photo::before\s*\{[^}]*display:\s*block/s);
 });
 
 test('implements the approved mobile refinement contract', async () => {
@@ -226,4 +226,17 @@ test('implements the approved mobile refinement contract', async () => {
   for (let index = 1; index <= 6; index += 1) {
     assert.match(content, new RegExp(`situations/unified-0${index}\\.png\\?v=mobile2`));
   }
+});
+
+test('blends mobile situation photography into the card background', async () => {
+  const css = await read('../assets/css/components.css');
+
+  assert.match(
+    css,
+    /@media \(max-width:\s*767px\)[\s\S]*?\.situation-card__photo::before\s*\{[^}]*display:\s*block[^}]*width:\s*28%[^}]*background:\s*linear-gradient\(90deg,#F5F5F5/s,
+  );
+  assert.doesNotMatch(
+    css,
+    /@media \(max-width:\s*767px\)[\s\S]*?\.situation-card__photo::before\s*\{[^}]*display:\s*none/s,
+  );
 });
