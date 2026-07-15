@@ -204,7 +204,7 @@ test('implements the visual seams refinement contract', async () => {
   assert.match(css, /\.hero-facts li\s*\{/s);
   assert.match(css, /\.hero-facts strong\s*\{/s);
   assert.match(css, /\.hero-facts span\s*\{/s);
-  assert.match(css, /\.hero-facts li::before\s*\{/s);
+  assert.doesNotMatch(css, /\.hero-facts li::before\s*\{/s);
   assert.match(css, /\.situation-card__photo::before\s*\{[^}]*linear-gradient\(90deg,#F5F5F5/s);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.situation-card__photo::before\s*\{[^}]*display:\s*none/s);
 });
@@ -214,7 +214,7 @@ test('implements the approved mobile refinement contract', async () => {
   const content = await read('../assets/js/content.mjs');
 
   assert.match(css, /\.hero-facts li\s*\{[^}]*border:\s*1px solid #1FBBC7[^}]*background:\s*var\(--white\)/s);
-  assert.match(css, /\.hero-facts li::before\s*\{[^}]*background:\s*#94D6DC/s);
+  assert.doesNotMatch(css, /\.hero-facts li::before\s*\{/s);
   assert.match(css, /\.hero-facts strong\s*\{[^}]*color:\s*var\(--turquoise-dark\)/s);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.hero-facts ul\s*\{[^}]*grid-template-columns:\s*1fr/s);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.situation-card\s*\{[^}]*min-height:\s*188px/s);
