@@ -163,14 +163,27 @@ test('implements the fourth desktop refinement contract', async () => {
 
   assert.ok((html.match(/class="desktop-break"/g) ?? []).length >= 4);
   assert.match(css, /\.desktop-break\s*\{[^}]*display:/s);
-  assert.match(css, /\.hero-facts--accent\s*\{[^}]*background:\s*#1FBBC7/s);
+  assert.match(css, /\.hero-facts--accent\s*\{/s);
   assert.doesNotMatch(css, /\.hero-facts--accent::after/);
   assert.match(css, /\.situation-card\s*\{[^}]*background:\s*#F5F5F5/s);
-  assert.doesNotMatch(css, /\.situation-card__photo::before/);
   assert.match(css, /\.path-card\s*\{[^}]*transition:[^}]*480ms/s);
   assert.equal((html.match(/class="steps-route__visual"/g) ?? []).length, 4);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.steps-route__visual\s*\{[^}]*display:\s*none/s);
   for (let index = 1; index <= 6; index += 1) {
     assert.match(content, new RegExp(`situations/unified-0${index}\\.png`));
   }
+});
+
+test('implements the visual seams refinement contract', async () => {
+  const css = await read('../assets/css/components.css');
+
+  assert.match(css, /\.hero__glow--one\s*\{[^}]*width:\s*420px[^}]*height:\s*420px/s);
+  assert.match(css, /\.hero__glow\s*\{[^}]*rgb\(148 214 220 \/ 28%\)/s);
+  assert.match(css, /\.hero-facts--accent\s*\{[^}]*background:\s*#F5F5F5/s);
+  assert.match(css, /\.hero-facts li\s*\{[^}]*background:\s*#1FBBC7/s);
+  assert.match(css, /\.hero-facts strong\s*\{[^}]*color:\s*var\(--white\)/s);
+  assert.match(css, /\.hero-facts span\s*\{[^}]*color:\s*rgb\(255 255 255 \/ 88%\)/s);
+  assert.match(css, /\.hero-facts li::before\s*\{[^}]*background:\s*var\(--orange\)/s);
+  assert.match(css, /\.situation-card__photo::before\s*\{[^}]*linear-gradient\(90deg,#F5F5F5/s);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*?\.situation-card__photo::before\s*\{[^}]*display:\s*none/s);
 });
