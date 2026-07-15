@@ -240,3 +240,20 @@ test('blends mobile situation photography into the card background', async () =>
     /@media \(max-width:\s*767px\)[\s\S]*?\.situation-card__photo::before\s*\{[^}]*display:\s*none/s,
   );
 });
+
+test('gives expanded mobile situation cards enough room for their content', async () => {
+  const css = await read('../assets/css/components.css');
+
+  assert.match(
+    css,
+    /\.situation-card\s*\{[^}]*transition:[^}]*min-height/s,
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*767px\)[\s\S]*?\.situation-card\[aria-expanded="true"\]\s*\{[^}]*min-height:\s*300px/s,
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*767px\)[\s\S]*?\.situation-card__back strong\s*\{[^}]*font-size:\s*23px/s,
+  );
+});

@@ -25,7 +25,7 @@
 .hero-facts span { margin-top:18px; color:var(--text); font-size:15px; font-weight:500; line-height:1.5; }
 .situations { background: var(--surface); }
 .situations__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
-.situation-card { position: relative; min-height: 270px; overflow: hidden; padding: 0; border: 2px solid var(--turquoise); border-radius: var(--radius-sm); background:#F5F5F5; color: var(--text-strong); text-align: left; transition: box-shadow var(--duration-normal) var(--ease), transform var(--duration-normal) var(--ease); }
+.situation-card { position: relative; min-height: 270px; overflow: hidden; padding: 0; border: 2px solid var(--turquoise); border-radius: var(--radius-sm); background:#F5F5F5; color: var(--text-strong); text-align: left; transition: min-height 260ms var(--ease), box-shadow var(--duration-normal) var(--ease), transform var(--duration-normal) var(--ease); }
 .situation-card:hover { box-shadow: var(--shadow-soft); transform: translateY(-2px); }
 .situation-card__front, .situation-card__back { position: absolute; inset: 0; transition: opacity 240ms var(--ease), transform 240ms var(--ease); }
 .situation-card__front { display:grid; grid-template-columns:minmax(250px,58%) 42%; align-items:stretch; }
@@ -73,9 +73,11 @@
   .hero__visual img { left:50%; width:145%; height:360px; margin:0; }
   .situations__grid { grid-template-columns: 1fr; }
   .situation-card { min-height:188px; }
+  .situation-card[aria-expanded="true"] { min-height:300px; }
   .situation-card__front { grid-template-columns:minmax(0,56%) 44%; }
   .situation-card__title { padding:22px 12px 22px 20px; font-size:19px; line-height:1.12; overflow-wrap:normal; }
   .situation-card__back { padding:24px; }
+  .situation-card__back strong { font-size:23px; }
   .situation-card__photo::before { display:block; width:28%; background:linear-gradient(90deg,#F5F5F5 0%,rgb(245 245 245 / 86%) 30%,transparent 100%); }
   .situation-card__photo,.situation-card__photo img { min-height:184px; height:184px; }
   .situation-card__photo img { object-position:right bottom; }
