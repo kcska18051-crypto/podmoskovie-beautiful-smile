@@ -106,6 +106,14 @@ test('uses a semantic responsive footer instead of a page-wide snapshot', async 
   assert.doesNotMatch(html, /site-shell-picture--footer/);
 });
 
+test('lays out the semantic footer responsively', async () => {
+  const footerCss = await read('../assets/css/footer.css');
+
+  assert.match(footerCss, /\.site-footer__grid\s*\{[^}]*grid-template-columns:/s);
+  assert.match(footerCss, /@media \(max-width:\s*767px\)[\s\S]*?\.site-footer__grid\s*\{[^}]*grid-template-columns:\s*1fr/s);
+  assert.match(footerCss, /\.site-footer__socials\s*\{[^}]*display:\s*flex/s);
+});
+
 test('matches the approved whitening-page visual language', async () => {
   const css = await read('../assets/css/components.css');
 

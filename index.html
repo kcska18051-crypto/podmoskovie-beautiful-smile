@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
@@ -65,11 +66,77 @@
     <section class="section ratings" id="ratings" data-locked="true"><div class="container"><div class="section-heading"><h2>Независимые рейтинги</h2><p>Мнение пациентов на авторитетных интернет-ресурсах.</p></div><div class="ratings__grid" id="ratings-grid"></div></div></section>
   </main>
 
-  <footer class="site-footer site-shell" data-locked="true" aria-label="Подвал действующего сайта">
-    <picture class="site-shell-picture site-shell-picture--footer">
-      <source media="(max-width: 767px)" srcset="assets/images/site-shell/footer-mobile.svg">
-      <img src="assets/images/site-shell/footer-desktop-viewport.png" alt="Подвал сайта Центра стоматологии «Подмосковье»">
-    </picture>
+  <footer class="site-footer" data-locked="true" aria-label="Подвал сайта">
+    <div class="container site-footer__grid">
+      <section class="site-footer__contacts" aria-label="Контакты клиники">
+        <a class="site-footer__phone" href="tel:+74852744545">+7 (4852) 74-45-45</a>
+        <a href="mailto:mail@mc-podmoskovie.ru">mail@mc-podmoskovie.ru</a>
+        <p class="site-footer__caption">«Подмосковье» в социальных сетях</p>
+        <div class="site-footer__socials" aria-label="Социальные сети">
+          <a href="https://www.youtube.com/channel/UCQbDby5BB8a7L2uYpUuNo3A/videos" aria-label="YouTube"><img src="assets/images/footer/youtube.svg" alt=""></a>
+          <a href="https://zen.yandex.ru/id/5ed5080263547c6b62d79d65" aria-label="Дзен"><img src="assets/images/footer/zen.svg" alt=""></a>
+          <a href="https://vk.com/mc_podmoskovie" aria-label="ВКонтакте"><img src="assets/images/footer/vk.svg" alt=""></a>
+          <a href="https://rutube.ru/channel/47150498/" aria-label="Rutube"><img src="assets/images/footer/rutube.svg" alt=""></a>
+          <a href="https://t.me/mcpodmoskovie_bot?start=14974566517" aria-label="Telegram"><img src="assets/images/footer/telegram.svg" alt=""></a>
+          <a href="https://max.ru/u/f9LHodD0cOKWs2_SFO6ywnXv-ccw5N1sqSATNJx3VPJP7K-DedwyqJKg804" aria-label="MAX"><img src="assets/images/footer/max.svg" alt=""></a>
+        </div>
+        <a class="site-footer__policy" href="https://www.mc-podmoskovie.ru/policy/">Политика конфиденциальности</a>
+        <address>150040, Ярославль,<br>ул. Некрасова, зд. 41, стр. 5</address>
+        <p>Пн.–Пт. 8:00–20:30<br>Сб.–Вс. 9:00–17:00</p>
+        <p class="site-footer__caption">Рады получить обратную связь</p>
+        <div class="site-footer__actions">
+          <a class="button site-footer__action" href="https://www.mc-podmoskovie.ru/otzyvy/">Оставить благодарность</a>
+          <button class="button site-footer__action site-footer__action--outline" type="button" data-open-consultation>Обратная связь</button>
+        </div>
+        <p class="site-footer__copyright">© ООО «МЦ «Подмосковье», 1998–2026</p>
+      </section>
+
+      <nav class="site-footer__nav" aria-label="Информация о клинике">
+        <a href="https://www.mc-podmoskovie.ru/about/"><strong>О клинике</strong></a>
+        <a href="https://www.mc-podmoskovie.ru/doctors/"><strong>Врачи</strong></a>
+        <div class="site-footer__group">
+          <a href="https://www.mc-podmoskovie.ru/otzyvy/"><strong>Отзывы</strong></a>
+          <a href="https://www.mc-podmoskovie.ru/otzyvy/">Отзывы о врачах</a>
+          <a href="https://www.mc-podmoskovie.ru/otzyvy/">Отзывы о клинике</a>
+          <a href="https://www.mc-podmoskovie.ru/otzyvy/cases/">Примеры работ</a>
+        </div>
+        <a href="https://www.mc-podmoskovie.ru/policy/"><strong>Правовая информация</strong></a>
+        <a href="https://www.mc-podmoskovie.ru/contacts/"><strong>Контакты</strong></a>
+      </nav>
+
+      <nav class="site-footer__services" aria-label="Лечение и диагностика">
+        <div class="site-footer__group">
+          <a href="https://www.mc-podmoskovie.ru/services/diagnostics/"><strong>Диагностика</strong></a>
+          <a href="https://www.mc-podmoskovie.ru/services/diagnostics/3d/">Трёхмерная 3D-томография</a>
+          <a href="https://www.mc-podmoskovie.ru/services/diagnostics/ortopantomogramma/">Ортопантомограмма</a>
+          <a href="https://www.mc-podmoskovie.ru/services/diagnostics/telerentgenogramma/">Телерентгенограмма</a>
+        </div>
+        <div class="site-footer__group">
+          <a href="https://www.mc-podmoskovie.ru/services/therapeutic/"><strong>Лечение зубов</strong></a>
+          <a href="https://www.mc-podmoskovie.ru/services/therapeutic/caries/">Лечение кариеса</a>
+          <a href="https://www.mc-podmoskovie.ru/services/therapeutic/pulpitis/">Лечение пульпита</a>
+          <a href="https://www.mc-podmoskovie.ru/services/therapeutic/restoration-of-teeth/">Реставрация зубов</a>
+        </div>
+        <a href="https://www.mc-podmoskovie.ru/services/"><strong>Хирургия</strong></a>
+        <a href="https://www.mc-podmoskovie.ru/services/"><strong>Детская стоматология</strong></a>
+      </nav>
+
+      <nav class="site-footer__services" aria-label="Восстановление и эстетика">
+        <div class="site-footer__group">
+          <a href="https://www.mc-podmoskovie.ru/services/implant/"><strong>Имплантация зубов</strong></a>
+          <a href="https://www.mc-podmoskovie.ru/services/implant/all-on-4-all-on-6/">All-on-4 / All-on-6</a>
+          <a href="https://www.mc-podmoskovie.ru/services/orthopaedy/"><strong>Протезирование</strong></a>
+          <a href="https://www.mc-podmoskovie.ru/services/orthopaedy/veneers/">Виниры</a>
+        </div>
+        <a href="https://www.mc-podmoskovie.ru/services/ortodont/"><strong>Ортодонтия</strong></a>
+        <a href="https://www.mc-podmoskovie.ru/services/"><strong>Гигиена и профилактика</strong></a>
+        <a href="https://www.mc-podmoskovie.ru/services/parodont/"><strong>Лечение дёсен</strong></a>
+        <a href="https://www.mc-podmoskovie.ru/services/krasivaya-ulybka/"><strong>Красивая улыбка</strong></a>
+        <a href="https://www.mc-podmoskovie.ru/services/whitening/"><strong>Отбеливание</strong></a>
+        <a href="https://www.mc-podmoskovie.ru/services/"><strong>Наркоз / седация</strong></a>
+      </nav>
+    </div>
+    <p class="site-footer__legal">ИМЕЮТСЯ ПРОТИВОПОКАЗАНИЯ, НЕОБХОДИМО ПРОКОНСУЛЬТИРОВАТЬСЯ СО СПЕЦИАЛИСТОМ</p>
   </footer>
   <dialog class="consult-dialog" id="consult-dialog" aria-labelledby="consult-dialog-title">
     <button class="consult-dialog__close" type="button" data-close-consultation aria-label="Закрыть форму">×</button>
