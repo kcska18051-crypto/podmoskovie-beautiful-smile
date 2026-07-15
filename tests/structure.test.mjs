@@ -92,17 +92,31 @@ test('uses the supplied responsive team compositions', async () => {
   assert.match(app, /teamMobileSlides/);
 });
 
-test('frames the prototype with responsive snapshots of the live site shell', async () => {
+test('uses a semantic responsive footer instead of a page-wide snapshot', async () => {
   const html = await read('../index.html');
-  const baseCss = await read('../assets/css/base.css');
 
-  assert.match(html, /site-shell\/header-desktop\.svg/);
-  assert.match(html, /site-shell\/header-mobile\.svg/);
-  assert.match(html, /site-shell\/footer-desktop-viewport\.png/);
-  assert.match(html, /site-shell\/footer-mobile\.svg/);
-  assert.match(baseCss, /site-shell-picture--footer img\s*\{[^}]*aspect-ratio:\s*390\s*\/\s*1778/s);
-  assert.match(html, /<picture class="site-shell-picture site-shell-picture--header">/);
-  assert.match(html, /<picture class="site-shell-picture site-shell-picture--footer">/);
+  assert.match(html, /<footer[^>]+class="site-footer/);
+  assert.match(html, /class="container site-footer__grid"/);
+  assert.match(html, /class="site-footer__contacts"/);
+  assert.match(html, /class="site-footer__socials"/);
+  assert.match(html, /class="site-footer__legal"/);
+  assert.match(html, /href="tel:\+74852744545"/);
+  assert.match(html, /href="mailto:mail@mc-podmoskovie\.ru"/);
+  assert.doesNotMatch(html, /footer-desktop-viewport\.png|footer-mobile\.svg/);
+  assert.doesNotMatch(html, /site-shell-picture--footer/);
+});
+
+test('matches the approved whitening-page visual language', async () => {
+  const css = await read('../assets/css/components.css');
+
+  assert.match(css, /\.hero-facts li\s*\{[^}]*border:\s*1px solid #1FBBC7[^}]*background:\s*var\(--white\)/s);
+  assert.doesNotMatch(css, /\.hero-facts li::before/);
+  assert.doesNotMatch(css, /\.hero-facts li\s*\{[^}]*box-shadow:/s);
+  assert.match(css, /\.path-card\s*\{[^}]*border:\s*1px solid/s);
+  assert.doesNotMatch(css, /\.paths::before/);
+  assert.match(css, /\.expert__proofs li:is\(:hover,:focus-within\)\s*\{[^}]*background:\s*var\(--blue-050\)/s);
+  assert.match(css, /\.steps-route__panels article\s*\{[^}]*border:\s*1px solid[^}]*background:\s*var\(--surface\)/s);
+  assert.doesNotMatch(css, /\.steps-route__panels article\s*\{[^}]*border-top:\s*4px solid/s);
 });
 
 test('uses the approved vector header for desktop and mobile', async () => {
