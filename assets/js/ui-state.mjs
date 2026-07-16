@@ -6,3 +6,4 @@ export const activateStep = (currentIndex, requestedIndex, total) =>
   Number.isInteger(requestedIndex) && requestedIndex >= 0 && requestedIndex < total
     ? requestedIndex
     : currentIndex;
+export const nextFactIndex = (currentIndex, count) => count > 0 ? (currentIndex + 1) % count : 0;
