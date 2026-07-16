@@ -1,8 +1,32 @@
 import { situations, profileDoctors, ratings } from './content.mjs';
-import { toggleExclusive, clampPercent, pairPageCount, movePage, activateStep } from './ui-state.mjs';
+import { toggleExclusive, clampPercent, pairPageCount, movePage, activateStep, nextFactIndex } from './ui-state.mjs';
 
 const situationGrid = document.querySelector('#situation-grid');
 let activeSituation = null;
+
+const rotatingFacts = document.querySelector('[data-rotating-facts]');
+if (rotatingFacts) {
+  const factItems = [...rotatingFacts.querySelectorAll('[data-fact]')];
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let factIndex = 0;
+  let factTimer = null;
+  const renderFact = () => {
+    rotatingFacts.style.setProperty('--fact-index', factIndex);
+    factItems.forEach((item, index) => item.classList.toggle('is-active', index === factIndex));
+  };
+  const stopFacts = () => { clearInterval(factTimer); factTimer = null; };
+  const startFacts = () => {
+    if (reducedMotion || factTimer || document.hidden) return;
+    factTimer = setInterval(() => { factIndex = nextFactIndex(factIndex, factItems.length); renderFact(); }, 2000);
+  };
+  rotatingFacts.addEventListener('mouseenter', stopFacts);
+  rotatingFacts.addEventListener('mouseleave', startFacts);
+  rotatingFacts.addEventListener('focusin', stopFacts);
+  rotatingFacts.addEventListener('focusout', event => { if (!rotatingFacts.contains(event.relatedTarget)) startFacts(); });
+  document.addEventListener('visibilitychange', () => document.hidden ? stopFacts() : startFacts());
+  renderFact();
+  startFacts();
+}
 
 if (situationGrid) {
   situationGrid.innerHTML = situations.map(item => `
